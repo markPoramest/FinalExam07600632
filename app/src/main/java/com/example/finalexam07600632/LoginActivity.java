@@ -23,18 +23,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         final TextView username_text = findViewById(R.id.username_edit_text);
         final TextView password_text = findViewById(R.id.password_edit_text);
-        loginRepository log = new loginRepository(LoginActivity.this);
-        log.getLogin(new loginRepository.callBack() {
-            @Override
-            public void getloginCallBack(List<login> loginItemList) {
-                Log.i("head","====All username List====");
-                for (int i=0;i<loginItemList.size();i++)
-                {
-                    String user = loginItemList.get(i).username;
-                    Log.i("username",user);
-                }
-            }
-        });
+
         Button login = findViewById(R.id.login_button);
         login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,6 +68,26 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent i1 = new Intent(LoginActivity.this,RegisterActivity.class);
                 startActivity(i1);
+            }
+        });
+    }
+    protected void onResume(){
+        super.onResume();
+        reloadLog();
+
+    }
+
+    private void reloadLog() {
+        loginRepository log = new loginRepository(LoginActivity.this);
+        log.getLogin(new loginRepository.callBack() {
+            @Override
+            public void getloginCallBack(List<login> loginItemList) {
+                Log.i("head","====All username List====");
+                for (int i=0;i<loginItemList.size();i++)
+                {
+                    String user = loginItemList.get(i).username;
+                    Log.i("username",user);
+                }
             }
         });
     }
