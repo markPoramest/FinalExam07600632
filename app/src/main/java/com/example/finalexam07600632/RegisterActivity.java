@@ -41,7 +41,7 @@ public class RegisterActivity extends AppCompatActivity {
                             finish();
                         }
                     });
-                    Toast.makeText(RegisterActivity.this,"All fields are required",
+                    Toast.makeText(RegisterActivity.this,"Register successfully",
                             Toast.LENGTH_SHORT).show();
                     finish();
                 }
